@@ -1,0 +1,249 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no">
+    <meta name="keywords" content="大豫网,腾讯大豫网,腾讯?大豫网,腾讯河南频道">
+    <meta name="description" content="大豫网,腾讯大豫网,腾讯?大豫网,腾讯河南频道,">
+    <meta name="Author" contect="gardenliu@qq.com">
+    <title>记忆好声音</title>
+    <style>
+        /* Create 15-5-5; */
+        body, div, ol, ul, h1, h2, h3, h4, h5, h6, p, th, td, dl, dd, form, iframe, input, textarea, select, label, article, aside, footer, header, menu, nav, section, time, audio, video { margin: 0; padding: 0; }
+        article, aside, footer, header, hgroup, nav, section, audio, canvas, video, img { display: block; }
+        body { font-size: 100%; font-family: microsoft yahei, Helvetica, STHeiti; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
+        body { width: 100%; height: 100%; overflow: hidden }
+        textarea { resize: none; }
+        iframe, img { border: 0; }
+        ul, ol { list-style: none; }
+        input, select, textarea { outline: 0; -webkit-user-modify: read-write-plaintext-only; }
+        input { -webkit-appearance: none; }
+        a { text-decoration: none; }
+        .hiden{display: none}
+        #loading {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 999;
+            top: 0;
+            left: 0;
+            background: #333;
+        }
+        #loading .load-info{width: 100%;position: absolute;;top: 57%;z-index: 5;font-size: 1.2em;text-align: center;color:#fff }
+        #loading .loadpan{width: 35%;position: absolute;left: 32%;top: 33%;z-index: 1;animation: rotation 20s linear infinite both;-webkit-animation: rotation 20s linear infinite both;}
+
+        @media screen and (min-width:450px){
+            .landscape{
+                height:100%;
+                display:block;
+                background-color:#ff96af
+            }
+            .landscape .phone{
+                background-image:url(http://mat1.gtimg.com/henan/2014hjMob/phone.png);
+                background-repeat:no-repeat;
+                width:73px;
+                height:109px;
+                position:absolute;
+                left:50%;
+                top:50%;
+                margin-top:-54px;
+                margin-left:-36px;
+                background-size:73px 109px;
+                animation:rotate 1.5s;
+                -moz-animation:rotate 1.5s;
+                -webkit-animation:rotate 1.5s;
+                -o-animation:rotate 1.5s;
+                -webkit-animation-iteration-count:infinite;
+                -webkit-animation-delay:.3s
+            }
+            .landscape .tips{
+                width:173px;
+                height:29px;
+                text-align:center;
+                position:absolute;
+                left:50%;
+                top:50%;
+                margin-top:71px;
+                margin-left:-86px;
+                color:#fff
+            }
+            .content{
+                display:none
+            }
+
+        }
+
+        .page1{ background: url(imgs/p1bg.jpg) 0 0 no-repeat;background-size: 100% 100%;width: 100%;height: 100%;position: relative;z-index: 0}
+        .p1_record{position: absolute;width: 62%;top: 25%;left: 20%; animation: rotation 20s linear infinite both;-webkit-animation: rotation 20s linear infinite both;}
+        .p1_cover{position: absolute;width: 73%;top: 22%;left: 15%}
+        .p1_info{position: absolute;width: 76%;left: 12%;bottom: 24%;color: #fff}
+        .p1_btn{position: absolute;width: 76%;left: 12%;color: #fff;height: 2em;border-radius: 2em;text-align: center;line-height: 2em;border: 1px solid #fff}
+        .join{display: block;z-index: 5;bottom: 14%; animation: dragTop 0.8s ease both;-webkit-animation: dragTop 0.8s ease both;}
+        .sign,.share{display: block;bottom: 5%; animation: dragTop 0.8s ease 0.3s both;-webkit-animation: dragTop 0.8s ease 0.3s both;}
+        .page2{ background: url(imgs/p2bg.jpg) 0 0 no-repeat; transition: all 0.6s;-webkit-transition: all 0.6s;transform: translateY(0);
+            -webkit-transform: translateY(0);;background-size: 100% 100%;width: 100%;height: 100%;position: absolute;z-index: 1;top: -100%}
+        .page3{ background: url(imgs/p3bg.jpg) 0 0 no-repeat;transition: all 0.6s;-webkit-transition: all 0.6s;transform: translateY(0);
+            -webkit-transform: translateY(0);background-size: 100%;width: 100%;height: 100%;position: absolute;z-index: 2;top: -100%}
+        .page3 .p1_info{top: 20%;text-align: center;bottom:auto}
+        .p1_info .percent{color: #F5EF4D;font-size: 2em}
+        .p3_info_main{padding-top: 0.5em;line-height: 1.5em}.p3_info_main .percent{color: #fff;font-size: 1em;}
+        .reset{bottom: 23%; animation: dragTop 0.8s ease 1s both;-webkit-animation: dragTop 0.8s ease 1s both;}
+        .page3 .join{ animation-delay: 1.4s;-webkit-animation-delay: 1.4s;}
+        .page3 .share{ animation-delay: 1.8s;-webkit-animation-delay: 1.8s;}
+        /*倒计时*/
+        .countSec{background: none repeat scroll 0 0 rgba(0, 0, 0, 0.7);height: 100%; left: 0;position: absolute;top: 0;width: 100%; z-index: 2000;}
+        .countSec img{width: 30%;position: absolute;top: 30%;left: 35%}
+        .tube_list{width: 4em;position: absolute;top: 2.2%;left: 12.6%;height: 1em;}
+        .tube_list li{width: 1em;height: 1em;float: left; background: url(imgs/tube_suc.png) 0 0 no-repeat;background-size: 100% 100%;}
+        .tube_suc{background-image: url(imgs/tube.png) !important; -webkit-animation: pulse 1s ease both !important;animation: pulse 1s ease both !important;}
+        .time{width:5.5em;height: 1em;position:absolute;right: 0;top: 2.1%;color: #FF9191; }
+        .time span{float: left}
+        .disc{width: 11em;height: 11em;top: 12%;left: 50%;margin-left: -5.5em;position: absolute; background: url(imgs/disc.png) 0 0 no-repeat;background-size: 100% 100%}
+        .record{width: 9.5em;padding: 0.75em;position: relative;z-index: 0;transform: rotate(0deg);-webkit-transform: rotate(0deg);transition: all 16s;-webkit-transition: all 16s;}
+        .pointer{position: absolute;width: 3em;top: -0.5em;right: -0.5em;z-index: 5; transform: rotate(-20deg);-webkit-transform: rotate(-20deg); transform-origin:0.5em 1em;-webkit-transform-origin:0.5em 1em ; transition: all 1s;-webkit-transition: all 1s;}
+        .discRote .pointer{animation: pointeAct 1s ease both;-webkit-animation: pointeAct 1s ease both;}
+        .discRote .record{animation: rotation 20s linear 1s infinite both;-webkit-animation: rotation 20s linear 1s infinite both;}
+        .tips{width: 26%;position: absolute;top: 46%;;left: 37%;}
+        .game_main{height: 48%;position: absolute;width: 98%;top: 52%;margin: 0 auto}
+        .game_main  li{width: 23%;float: left;height: 13%;margin: 7.5% 0% 0 8%;animation: pulse 0.5s ease both;-webkit-animation: pulse 0.5s ease both;animation-play-state:paused;
+            -webkit-animation-play-state:paused;}
+        .game_main .note{ background: url(imgs/note.png) center center no-repeat;background-size: 46% 95%; animation-play-state:running;
+            -webkit-animation-play-state:running;}
+        .game_main .note_r{ background: url(imgs/note_r.png) center center no-repeat;background-size: 50% 100%;}
+        .game_main .note_w{ background: url(imgs/note_w.png) center center no-repeat;background-size: 50% 100%;}
+        @media screen and (min-width: 360px){
+            .tube_list{top: 2.8%;left: 14%}
+            .time{top:2.6% }
+        }
+        @media screen and (max-height: 500px){
+            .game_main li{margin-top: 7%}
+        }
+        #mcover {background: none repeat scroll 0 0 rgba(0, 0, 0, 0.7);display: none;height: 100%; left: 0;position: fixed;top: 0;width: 100%; z-index: 2000;}
+        #mcover img {height: 180px;position: fixed;right: 18px;top: 5px;width: 260px;z-index: 20001;}
+        .page-sound {
+            position: absolute; width: 25px; height: 25px;
+            left: 5%; overflow: hidden;
+            top: 10%;
+            z-index: 5;
+        }
+        .page-sound .icon-music {
+            display: block;
+            width: 25px; height: 25px;
+            background: url(http://mat1.gtimg.com/henan/xinwen/20141124zdrw/i_sound_2.png) 0 0 no-repeat;
+            background-size: 100%;
+        }
+        .page-sound.z-play .icon-music {
+            background-image: url(http://mat1.gtimg.com/henan/xinwen/20141124zdrw/i_sound_1.png);
+        }
+        @-webkit-keyframes rotation {
+            from{
+                transform: rotate(0);
+                -webkit-transform: rotate(0);
+            }
+            to{
+                transform: rotate(360deg);
+                -webkit-transform: rotate(360deg);
+            }
+        }
+        @-webkit-keyframes pointeAct{
+            from{
+                transform: rotate(-20deg);
+                -webkit-transform: rotate(-20deg);
+            }
+            to{
+                transform: rotate(15deg);
+                -webkit-transform: rotate(15deg);
+            }
+        }
+        @-webkit-keyframes pulse{
+            0%{-webkit-transform:scale(1)}
+            50%{-webkit-transform:scale(2)}
+            100%{-webkit-transform:scale(1)}
+        }
+        @-webkit-keyframes dragTop {
+            0% {
+                opacity:0;
+                -webkit-transform:translateY(-70px)
+            }
+            60% {
+                opacity:1;
+                -webkit-transform:translateY(20px)
+            }
+            90% {
+                -webkit-transform:translateY(-5px)
+            }
+            97% {
+                -webkit-transform:translateY(-1px)
+            }
+            100% {
+                -webkit-transform:translateY(0px)
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="landscape hiden">
+    <div class="phone"></div>
+    <div class="tips">请将屏幕竖向浏览</div>
+</div>
+<div id="loading">
+    <img src="imgs/record.png" alt="" class="loadpan"/>
+    <div class="load-info">正在卖力加载中...</div>
+</div>
+<div id="mcover" onClick="document.getElementById('mcover').style.display='';"><img src="http://mat1.gtimg.com/henan/007/fx2.png"></div>
+
+<div class="page1" id="page1">
+    <img src="imgs/record.png" alt="" class="p1_record"/>
+    <img src="imgs/cover.png" alt="" class="p1_cover"/>
+    <div class="p1_info">2015好声音河南网络招募正在进行中，期待你的加入!!!</div>
+    <div class="p1_btn join" id="joinGame">进入游戏</div>
+    <a class="p1_btn sign" href="http://henan.qq.com/zt/2015/zghsy/m.htm">好声音河南招募详情</a>
+</div>
+<div class="page2" id="page2">
+    <div class="page-sound z-play" id="bg_music_wrap">
+        <i class="icon-music"></i>
+        <audio id="bg-music" src="http://mat1.gtimg.com/henan/007/audio1.mp3"  loop></audio>
+    </div>
+    <div class="countSec">
+        <img src="imgs/count1.png" alt=""/>
+    </div>
+    <div class="tube_list">
+        <li class="tube_suc"></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </div>
+    <div class="time"><span>时间:</span><span id="tsec">45.00</span></div>
+    <div class="disc">
+        <img src="imgs/pointer.png" alt="" class="pointer"/>
+        <img src="imgs/record.png" alt="" class="record"/>
+    </div>
+    <img src="imgs/tip0.gif" alt="" class="tips"/>
+    <div class="game_main">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </div>
+</div>
+<div class="page3" id="page3">
+    <div class="p1_info" id="gameinfo">
+        打败了<span class="percent">95</span>%<br> <div class="p3_info_main"> 亲，你好厉害，打败了<span class="percent">95</span>%的人,<br> 好声音火热报名中,<br> 赶快报名参加吧~ </div>
+    </div>
+    <div class="p1_btn reset" ontouchstart="location.href=location.href">再玩一次</div>
+    <a class="p1_btn join" href="http://henan.qq.com/zt/2015/zghsy/m.htm">好声音河南招募详情</a>
+    <div class="p1_btn share"  onClick="document.getElementById('mcover').style.display='block';">分享</div>
+</div>
+<script type="text/javascript" src="audio.js"></script>
+
+</body>
+</html>
